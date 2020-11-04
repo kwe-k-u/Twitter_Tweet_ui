@@ -1,8 +1,8 @@
 name: twitter_tweets_ui
 description: A widget that mimics the UI of  Twitter's tweets
 version: 0.0.1
-author:
-homepage:
+author: Kweku Appiah Acquaye
+homepage: ""
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -11,6 +11,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  flutter_icons: ^1.1.0
 
 dev_dependencies:
   flutter_test:
