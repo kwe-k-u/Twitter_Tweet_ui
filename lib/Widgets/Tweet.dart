@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:twitter_tweets_ui/Objects/TwitterPostTemp.dart';
 
 
 class TweetWidget extends StatelessWidget {
 
-  final String _displayName;
-  final String _handle;
-  final String _tweet;
-  //todo add object for tweet json
-  TweetWidget(this._displayName,this._handle,this._tweet);
+  final TwitterPostTemp temp;
+
+  TweetWidget(this.temp);
 
 
   @override
@@ -20,9 +19,9 @@ class TweetWidget extends StatelessWidget {
               leading: CircleAvatar(
                 child: Icon(Icons.account_circle),
               ),
-              title: Text("${this._displayName} \t${this._handle}\t 4h "),
+              title: Text("${temp.getUser().getAccountName()} \t${temp.getUser().getUserHandle()}\t 4h "),
               trailing: Icon(Zocial.twitter),
-              subtitle: Text(this._tweet),
+              subtitle: Text(temp.getTweetText()),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -33,7 +32,7 @@ class TweetWidget extends StatelessWidget {
                     IconButton(
                         icon: Icon(Icons.chat_bubble_outline),
                         onPressed: (){}),
-                    Text("3409")
+                    Text(temp.getReplyCount().toString())
                   ],
                 ),
 
@@ -43,7 +42,7 @@ class TweetWidget extends StatelessWidget {
                         icon: Icon(AntDesign.retweet),
 
                         onPressed: (){}),
-                    Text("3409")
+                    Text(temp.getRetweetCount().toString())
                   ],
                 ),
 
@@ -52,7 +51,7 @@ class TweetWidget extends StatelessWidget {
                     IconButton(
                         icon: Icon(EvilIcons.heart),
                         onPressed: (){}),
-                    Text("3409")
+                    Text(temp.getFavouriteCount().toString())
                   ],
                 ),
 

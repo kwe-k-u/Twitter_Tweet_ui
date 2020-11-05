@@ -1,5 +1,4 @@
 import 'dart:ffi';
-import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:twitter_tweets_ui/Objects/TwitterUserTemp.dart';
@@ -51,8 +50,7 @@ class TwitterPostTemp{
 
 
 
-
-
+    return this;
   }
 
   void setTweetId(dynamic id){
