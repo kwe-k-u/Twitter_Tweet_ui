@@ -43,7 +43,7 @@ class TwitterPostTemp{
     setLanguage(map["lang"]);
     setRetweetedStatus(map["retweeted"]);
     setFavouriteStatus(map["favorited"]);
-    setFavouriteCount(map["favoriteCount"]);
+    setFavouriteCount(map["favorite_count"]);
     setRetweetCount(map["retweet_count"]);
     // setUser(TwitterUserTemp().createFromMap(Map<String, dynamic>.from(map["usesr"])));
     setTweetCharacterRange(map['display_text_range']);
