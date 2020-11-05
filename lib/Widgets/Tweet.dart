@@ -4,11 +4,11 @@ import 'package:flutter_icons/flutter_icons.dart';
 
 class TweetWidget extends StatelessWidget {
 
-  TweetWidget(String displayName,String handleString, tweetString){
-    final String dis = displayName;
-    final String handle = handleString;
-    final String tweet = tweetString;
-  }
+  final String _displayName;
+  final String _handle;
+  final String _tweet;
+  //todo add object for tweet json
+  TweetWidget(this._displayName,this._handle,this._tweet);
 
 
   @override
@@ -20,9 +20,9 @@ class TweetWidget extends StatelessWidget {
               leading: CircleAvatar(
                 child: Icon(Icons.account_circle),
               ),
-              title: Text("{display name} \t{username}\t 4h "),
+              title: Text("${this._displayName} \t${this._handle}\t 4h "),
               trailing: Icon(Zocial.twitter),
-              subtitle: Text("Something cool about twitter"),
+              subtitle: Text(this._tweet),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
