@@ -35,7 +35,7 @@ class TwitterPostTemp{
   //                  SETTERS
 
   TwitterPostTemp createFromMap(Map<dynamic, dynamic> map){
-    setDatePosted(map["created_at"]);
+    // setDatePosted(map["created_at"]);
     setTweetId(map["id"]);
     setTweetText(map["full_text"]);
     setTruncatedStatus(map['truncated']);
