@@ -35,7 +35,7 @@ class TwitterPostTemp{
   //                  SETTERS
 
   TwitterPostTemp createFromMap(Map<dynamic, dynamic> map){
-    setDatePosted(map["create_at"]);
+    setDatePosted(map["created_at"]);
     setTweetId(map["id"]);
     setTweetText(map["full_text"]);
     setTruncatedStatus(map['truncated']);
@@ -45,7 +45,7 @@ class TwitterPostTemp{
     setFavouriteStatus(map["favorited"]);
     setFavouriteCount(map["favoriteCount"]);
     setRetweetCount(map["retweet_count"]);
-    setUser(TwitterUserTemp().createFromMap(Map<String, dynamic>.from(map["usesr"])));
+    // setUser(TwitterUserTemp().createFromMap(Map<String, dynamic>.from(map["usesr"])));
     setTweetCharacterRange(map['display_text_range']);
 
 
