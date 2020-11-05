@@ -19,7 +19,8 @@ class TweetWidget extends StatelessWidget {
               leading: CircleAvatar(
                 child: Icon(Icons.account_circle),
               ),
-              title: Text("${temp.getUser().getAccountName()} \t${temp.getUser().getUserHandle()}\t 4h "),
+              title: Text("account name \t@account name\t 4h "),
+              // title: Text("${temp.getUser().getAccountName()} \t${temp.getUser().getUserHandle()}\t 4h "),
               trailing: Icon(Zocial.twitter),
               subtitle: Text(temp.getTweetText()),
             ),
