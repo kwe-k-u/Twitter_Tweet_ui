@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:twitter_tweets_ui/Objects/TwitterPostTemp.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 class TweetWidget extends StatelessWidget {
@@ -12,7 +13,20 @@ class TweetWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GestureDetector(
+      onTap: () async{
+        if (await canLaunch(temp.getTweetURL())) {
+        await launch(
+        temp.getTweetURL(),
+        forceSafariVC: false,
+        forceWebView: false,
+        headers: <String, String>{'my_header_key': 'my_header_value'},
+        );
+        } else {
+        throw 'Could not launch ${temp.getTweetURL()}';
+        }
+
+      },
         child: Column(
           children: [
             ListTile(
