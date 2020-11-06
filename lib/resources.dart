@@ -29,7 +29,7 @@ DateTime convertTwitterDate(String d){
 ///   2000 becomes 2k
 String statText(dynamic data){
   String text = "";
-  if (data.runtimeType == null)
+  if (data.runtimeType == Null)
     return null.toString();
   if (data.runtimeType == String)
     data = int.parse(data);
