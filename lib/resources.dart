@@ -48,5 +48,5 @@ String statText(dynamic data){
     text = data.toString();
   }
 
-  return text;
+  return text.toString();
 }
