@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:twitter_tweets_ui/Objects/TwitterPostTemp.dart';
+import 'package:twitter_tweets_ui/resources.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 
@@ -33,9 +34,9 @@ class TweetWidget extends StatelessWidget {
               leading: CircleAvatar(
                 child: Icon(Icons.account_circle),
               ),
-              title: Text("account name \t@account name\t 4h "),
-              // title: Text("${temp.getUser().getAccountName()} \t${temp.getUser().getUserHandle()}\t 4h "),
-              trailing: Icon(Zocial.twitter),
+              // title: Text("account name \t@account name\t 4h "),
+              title: Text("${temp.getUser().getAccountName()} \t${temp.getUser().getUserHandle()}\t 4h "),
+              trailing: Icon(Zocial.twitter, size: 20.0,),
               subtitle: Text(temp.getTweetText()),
             ),
             Row(
@@ -47,7 +48,7 @@ class TweetWidget extends StatelessWidget {
                     IconButton(
                         icon: Icon(Icons.chat_bubble_outline),
                         onPressed: (){}),
-                    Text(temp.getReplyCount().toString())
+                    Text(statText(temp.getReplyCount()))
                   ],
                 ),
 
@@ -57,7 +58,7 @@ class TweetWidget extends StatelessWidget {
                         icon: Icon(AntDesign.retweet),
 
                         onPressed: (){}),
-                    Text(temp.getRetweetCount().toString())
+                    Text(statText(temp.getRetweetCount()))
                   ],
                 ),
 
@@ -66,7 +67,7 @@ class TweetWidget extends StatelessWidget {
                     IconButton(
                         icon: Icon(EvilIcons.heart),
                         onPressed: (){}),
-                    Text(temp.getFavouriteCount().toString())
+                    Text(statText(temp.getFavouriteCount()))
                   ],
                 ),
 
@@ -81,4 +82,5 @@ class TweetWidget extends StatelessWidget {
         )
     );
   }
+
 }

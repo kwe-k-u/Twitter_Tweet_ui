@@ -1,5 +1,7 @@
 
 
+import 'package:twitter_tweets_ui/resources.dart';
+
 class TwitterUserTemp{
   String _userHandle;
   String _userAccountName;
@@ -188,25 +190,5 @@ class TwitterUserTemp{
 
 
 
-  ///Obtains a date format as a string and converts it into a dart DateTime object
-  DateTime convertTwitterDate(String d){
-    DateTime newDate;
-    List<String> _months = ["Jan", "Feb",	"Mar", 	"Apr",	"May", 	"June", 	"July",
-      "Aug",	"Sept",	"Oct", 	"Nov",	"Dec"];
-
-    List<String> date = d.split(" ");
-
-    newDate = new DateTime(
-      int.parse(date.elementAt(5)), //year
-      int.parse(date.elementAt(2)), //month
-      _months.indexOf(date.elementAt(1)), //date
-      int.parse(date.elementAt(3).split(":").elementAt(0)),// hour
-      int.parse(date.elementAt(3).split(":").elementAt(1)),// minute
-      int.parse(date.elementAt(3).split(":").elementAt(2)),// second
-    );
-
-
-    return newDate;
-  }
 
 }
