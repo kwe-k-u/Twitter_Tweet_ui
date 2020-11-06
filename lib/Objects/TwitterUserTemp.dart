@@ -24,6 +24,7 @@ class TwitterUserTemp{
     setUserId(map["id"]);
     setUserName(map["name"]);
     setDescription(map["description"]);
+    setCreatedDate(map["created_at"]);
 
     return this;
   }
@@ -56,7 +57,7 @@ class TwitterUserTemp{
 
   void setCreatedDate(dynamic date){
     if (date.runtimeType == String){
-      DateTime.parse(date);
+      this._createAt = convertTwitterDate(date);
     } else if (date.runtimeType == DateTime){
       this._createAt = date;
     }
@@ -156,6 +157,24 @@ class TwitterUserTemp{
 
 
 
+  DateTime convertTwitterDate(String d){
+    DateTime newDate;
+    List<String> _months = ["Jan", "Feb",	"Mar", 	"Apr",	"May", 	"June", 	"July",
+      "Aug",	"Sept",	"Oct", 	"Nov",	"Dec"];
 
+    List<String> date = d.split(" ");
+
+    newDate = new DateTime(
+      int.parse(date.elementAt(5)), //year
+      int.parse(date.elementAt(2)), //month
+      _months.indexOf(date.elementAt(1)), //date
+      int.parse(date.elementAt(3).split(":").elementAt(0)),// hour
+      int.parse(date.elementAt(3).split(":").elementAt(1)),// minute
+      int.parse(date.elementAt(3).split(":").elementAt(2)),// second
+    );
+
+
+    return newDate;
+  }
 
 }

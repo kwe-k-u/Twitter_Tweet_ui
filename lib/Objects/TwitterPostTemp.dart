@@ -35,7 +35,7 @@ class TwitterPostTemp{
   //                  SETTERS
 
   TwitterPostTemp createFromMap(Map<dynamic, dynamic> map){
-    // setDatePosted(map["created_at"]);
+    setDatePosted(map["created_at"]);
     setTweetId(map["id"]);
     setTweetText(map["full_text"]);
     setTruncatedStatus(map['truncated']);
@@ -61,7 +61,7 @@ class TwitterPostTemp{
 
   void setDatePosted(dynamic date){
     if (date.runtimeType == String)
-        this._createdAt = DateTime.parse(date);
+        this._createdAt = convertTwitterDate(date);
     else if (date.runtimeType == DateTime)
       this._createdAt = date;
   }
@@ -202,6 +202,26 @@ class TwitterPostTemp{
     return map;
   }
 
+  DateTime convertTwitterDate(String d){
+    DateTime newDate;
+    List<String> _months = ["Jan", "Feb",	"Mar", 	"Apr",	"May", 	"June", 	"July",
+      "Aug",	"Sept",	"Oct", 	"Nov",	"Dec"];
 
+    List<String> date = d.split(" ");
+
+    newDate = new DateTime(
+      int.parse(date.elementAt(5)), //year
+      int.parse(date.elementAt(2)), //month
+      _months.indexOf(date.elementAt(1)), //date
+      int.parse(date.elementAt(3).split(":").elementAt(0)),// hour
+      int.parse(date.elementAt(3).split(":").elementAt(1)),// minute
+      int.parse(date.elementAt(3).split(":").elementAt(2)),// second
+    );
+
+
+    return newDate;
+  }
 
 }
+
+
