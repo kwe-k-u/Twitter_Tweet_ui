@@ -22,7 +22,7 @@ class TwitterUserTemp{
   TwitterUserTemp createFromMap(Map<String,dynamic> map){
 
     setUserHandle(map["screen_name"]);
-    setUserId(map["id"]);
+    setUserId(map["id"].toString());
     setUserName(map["name"]);
     setDescription(map["description"]);
     setCreatedDate(map["created_at"]);
