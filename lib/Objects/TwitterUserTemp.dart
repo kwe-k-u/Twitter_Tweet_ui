@@ -127,7 +127,7 @@ class TwitterUserTemp{
 
   ///Returns the account handle of [TwitterUserTemp] as a string
   String getUserHandle()
-  => "@"+this._userHandle ?? "";
+  => "@${this._userHandle}" ?? "";
 
   ///Returns the account name of [TwitterUserTemp] as a string
   String getAccountName()
