@@ -40,10 +40,10 @@ String statText(dynamic data){
 
   //Change to xM if number is a multiple of a million
   else if (data > 2000){
-    text = data~/1000.toString() + "k";
+    text = "${data~/1000}k";
   }
   else if (data > 1000000){
-    text = data~/1000000.toString() + "M";
+    text = "${data~/1000000}M";
   } else{
     text = data.toString();
   }
