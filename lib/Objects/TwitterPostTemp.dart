@@ -26,7 +26,7 @@ class TwitterPostTemp{
   // List<> __imageList list to hold images
 
 
-
+//todo change the images in the object to media and let the set image/media check from entities if the media type is a video or a photo
 
 
   //                  SETTERS
@@ -43,8 +43,15 @@ class TwitterPostTemp{
     setFavouriteStatus(map["favorited"]);
     setFavouriteCount(map["favorite_count"]);
     setRetweetCount(map["retweet_count"]);
-    // setUser(TwitterUserTemp().createFromMap(Map<String, dynamic>.from(map["usesr"])));
+    setReplyCount(map["reply_count"]);
+    setUser(TwitterUserTemp().createFromMap(Map<String, dynamic>.from(map["user"])));
     setTweetCharacterRange(map['display_text_range']);
+
+    //decomposing tweet url data
+    var temp = Map<String,dynamic>.from(Map<String,dynamic>.from(map["extended_entities"]).values.elementAt(0).elementAt(0)).values.elementAt(5);
+    setTweetURL(temp);
+
+    //
 
 
 
