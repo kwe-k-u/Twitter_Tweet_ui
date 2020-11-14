@@ -2,7 +2,7 @@
 
 
 ///Obtains a date format as a string and converts it into a dart DateTime object
-DateTime convertTwitterDate(String d){
+dynamic convertTwitterDate(String d){
   DateTime newDate;
   List<String> _months = ["Jan", "Feb",	"Mar", 	"Apr",	"May", 	"June", 	"July",
     "Aug",	"Sept",	"Oct", 	"Nov",	"Dec"];

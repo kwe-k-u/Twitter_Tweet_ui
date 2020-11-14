@@ -49,8 +49,8 @@ class TwitterPostTemp{
     setTweetCharacterRange(map['display_text_range']);
 
     //decomposing tweet url data
-    var temp = Map<String,dynamic>.from(Map<String,dynamic>.from(map["extended_entities"]).values.elementAt(0).elementAt(0)).values.elementAt(5);
-    setTweetURL(temp);
+    // var temp = Map<String,dynamic>.from(Map<String,dynamic>.from(map["extended_entities"]).values.elementAt(0).elementAt(0)).values.elementAt(5);
+    // setTweetURL(temp);
 
     //
 
