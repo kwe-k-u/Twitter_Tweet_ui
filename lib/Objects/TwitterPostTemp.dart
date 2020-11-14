@@ -34,25 +34,39 @@ class TwitterPostTemp{
 
   ///Creates and returns a [TwitterPostTemp] object from the json data [map]
   TwitterPostTemp createFromMap(Map<dynamic, dynamic> map){
+
+    //Runs if the tweet has been retweeted. helps replace authenticated user metrics with original tweet metrics
+
+    if (map["retweet_status"])
+      map = map["retweet_status"];
+
+
+
+
+
+
+
+    //Runs if tweet is current user's own tweet
     setDatePosted(map["created_at"]);
     setTweetId(map["id"]);
+    setRetweetedStatus(map["retweeted"]);
+    
     setTweetText(map["full_text"]);
     setTruncatedStatus(map['truncated']);
     setIsSensitiveStatus(map["possibly_sensitive"]);
     setLanguage(map["lang"]);
-    setRetweetedStatus(map["retweeted"]);
     setFavouriteStatus(map["favorited"]);
     setFavouriteCount(map["favorite_count"]);
     setRetweetCount(map["retweet_count"]);
     setReplyCount(map["reply_count"]);
     setUser(TwitterUserTemp().createFromMap(Map<String, dynamic>.from(map["user"])));
     setTweetCharacterRange(map['display_text_range']);
-
+    
     //decomposing tweet url data
     // var temp = Map<String,dynamic>.from(Map<String,dynamic>.from(map["extended_entities"]).values.elementAt(0).elementAt(0)).values.elementAt(5);
     // setTweetURL(temp);
 
-    //
+
 
 
 
