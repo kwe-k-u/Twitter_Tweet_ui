@@ -12,6 +12,8 @@ class TwitterPostTemp{
   bool _isRetweeted;
   bool _isPossiblySensitive;
   List<dynamic> _tweetCharacterRange;
+  String _mediaType;
+  List<String> _media = [];
 
   String _filterLevel;
   String _language;
@@ -24,7 +26,6 @@ class TwitterPostTemp{
   int _replyCount;
   int _quoteCount;
 
-  // List<> __imageList list to hold images
 
 
 //todo change the images in the object to media and let the set image/media check from entities if the media type is a video or a photo
@@ -36,39 +37,57 @@ class TwitterPostTemp{
   TwitterPostTemp createFromMap(Map<dynamic, dynamic> map){
 
     //Runs if the tweet has been retweeted. helps replace authenticated user metrics with original tweet metrics
+    if (map["retweeted"]) {
+      setDatePosted(map["retweeted_status"]["created_at"]);
+      setTweetId(map["retweeted_status"]["id"]);
+      setRetweetedStatus(map["retweeted_status"]["retweeted"]);
 
-    if (map["retweet_status"])
-      map = map["retweet_status"];
+      setTweetText(map["retweeted_status"]["full_text"]);
+      setTruncatedStatus(map["retweeted_status"]['truncated']);
+      setIsSensitiveStatus(map["retweeted_status"]["possibly_sensitive"]);
+      setLanguage(map["retweeted_status"]["lang"]);
+      setFavouriteStatus(map["retweeted_status"]["favorited"]);
+      setFavouriteCount(map["retweeted_status"]["favorite_count"]);
+      setRetweetCount(map["retweeted_status"]["retweet_count"]);
+      setReplyCount(map["retweeted_status"]["reply_count"]);
+      setUser(TwitterUserTemp().createFromMap(
+          Map<String, dynamic>.from(map["retweeted_status"]["user"])));
+      setTweetCharacterRange(map["retweeted_status"]['display_text_range']);
 
-
-
-
-
-
-
-    //Runs if tweet is current user's own tweet
-    setDatePosted(map["created_at"]);
-    setTweetId(map["id"]);
-    setRetweetedStatus(map["retweeted"]);
-    
-    setTweetText(map["full_text"]);
-    setTruncatedStatus(map['truncated']);
-    setIsSensitiveStatus(map["possibly_sensitive"]);
-    setLanguage(map["lang"]);
-    setFavouriteStatus(map["favorited"]);
-    setFavouriteCount(map["favorite_count"]);
-    setRetweetCount(map["retweet_count"]);
-    setReplyCount(map["reply_count"]);
-    setUser(TwitterUserTemp().createFromMap(Map<String, dynamic>.from(map["user"])));
-    setTweetCharacterRange(map['display_text_range']);
-    
-    //decomposing tweet url data
-    // var temp = Map<String,dynamic>.from(Map<String,dynamic>.from(map["extended_entities"]).values.elementAt(0).elementAt(0)).values.elementAt(5);
-    // setTweetURL(temp);
+      if (map["retweeted_status"]["entities"].containsKey("media")){
+        setMedia(map["retweeted_status"]["entities"]["media"][0]["media_url"].toString(), map["retweeted_status"]["entities"]["media"][0]["type"]);
+      }
 
 
+    } else {
+      //Runs if tweet is current user's own tweet
+      setDatePosted(map["created_at"]);
+      setTweetId(map["id"]);
+      setRetweetedStatus(map["retweeted"]);
+
+      setTweetText(map["full_text"]);
+      setTruncatedStatus(map['truncated']);
+      setIsSensitiveStatus(map["possibly_sensitive"]);
+      setLanguage(map["lang"]);
+      setFavouriteStatus(map["favorited"]);
+      setFavouriteCount(map["favorite_count"]);
+      setRetweetCount(map["retweet_count"]);
+      setReplyCount(map["reply_count"]);
+      setUser(TwitterUserTemp().createFromMap(
+          Map<String, dynamic>.from(map["user"])));
+      setTweetCharacterRange(map['display_text_range']);
+
+      if (map["entities"].containsKey("media")){
+        setMedia(map["entities"]["media"][0]["media_url"], map["entities"]["media"][0]["type"]);
+      }
 
 
+      //decomposing tweet url data
+      // var temp = Map<String,dynamic>.from(Map<String,dynamic>.from(map["extended_entities"]).values.elementAt(0).elementAt(0)).values.elementAt(5);
+      // setTweetURL(temp);
+
+
+    }
 
     return this;
   }
@@ -162,7 +181,11 @@ class TwitterPostTemp{
     this._filterLevel = level;
   }
 
-  
+
+  void setMedia(String url, String type){
+    this._mediaType = type;
+    this._media.add(url);
+  }
 //todo add support for other languages besides english
 
 
@@ -247,6 +270,19 @@ class TwitterPostTemp{
   ///Returns a list showing the number of characters in the tweet
   List<dynamic> getTweetCharacterRange()
   => this._tweetCharacterRange;
+
+
+
+
+
+
+
+  String getMediaType()
+  => this._mediaType;
+
+
+  List<String> getMediaUrl()
+  => this._media;
 
 
   ///Returns a json object containing all the attributes of [TwitterPostTemp]

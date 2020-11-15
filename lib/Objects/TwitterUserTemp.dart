@@ -22,6 +22,7 @@ class TwitterUserTemp{
 
   ///Creates a [TwitterUserTemp] from a json object [map]
   TwitterUserTemp createFromMap(Map<String,dynamic> map){
+    print("asdf man map $map");
 
     setUserHandle(map["screen_name"]);
     setUserId(map["id"].toString());
@@ -37,6 +38,7 @@ class TwitterUserTemp{
   void setUserName(String name){
     this._userAccountName = name;
   }
+
 
 
   ///Sets the user handle of [TwitterUserTemp] to [handle]

@@ -35,7 +35,22 @@ class TweetWidget extends StatelessWidget {
                 child: Icon(Icons.account_circle),
               ),
               // title: Text("account name \t@account name\t 4h "),
-              title: Text("${temp.getUser().getAccountName()} \t${temp.getUser().getUserHandle()}\t 4h "),
+              title: Column(
+                children: [
+                  Text("${temp.getUser().getAccountName()} \t${temp.getUser().getUserHandle()}\t 4h "),
+
+                  //todo add support for mulitple images and video
+                  temp.getMediaType() == "photo" ?
+                    Image.network(temp.getMediaUrl()[0], scale: 9,)
+                    // print("type asdf ${temp.getMediaUrl()[0]}"),
+                    // Image.network("https://blog.hubspot.com/hubfs/image8-2.jpg")
+
+                      :
+                      Container()
+
+                  // temp.getMediaType().toLowerCase() == "photo" ? Image.network(temp.getMediaUrl()[0]) : Container(),
+                ],
+              ),
               trailing: Icon(Zocial.twitter, size: 20.0,),
               subtitle: Text(temp.getTweetText()),
             ),
@@ -56,6 +71,7 @@ class TweetWidget extends StatelessWidget {
                   children: [
                     IconButton(
                         icon: Icon(AntDesign.retweet),
+                        color: temp.isRetweeted() ? Colors.green : Colors.black,
 
                         onPressed: (){}),
                     Text(statText(temp.getRetweetCount()))
@@ -66,8 +82,10 @@ class TweetWidget extends StatelessWidget {
                   children: [
                     IconButton(
                         icon: Icon(EvilIcons.heart),
+                        color: temp.isFavourite() ? Colors.red : Colors.black,
                         onPressed: (){}),
-                    Text(statText(temp.getFavouriteCount()))
+                    Text(statText(temp.getFavouriteCount())),
+
                   ],
                 ),
 
@@ -77,7 +95,8 @@ class TweetWidget extends StatelessWidget {
 
                 Spacer(),
               ],
-            )
+            ),
+            Divider(thickness: 1.4,)
           ],
         )
     );
