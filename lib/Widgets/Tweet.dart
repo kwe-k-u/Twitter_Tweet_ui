@@ -32,19 +32,17 @@ class TweetWidget extends StatelessWidget {
           children: [
             ListTile(
               leading: CircleAvatar(
-                child: Icon(Icons.account_circle),
+                child:
+                Image.network(temp.getUser().getProfileImageUrl(), ),
               ),
               // title: Text("account name \t@account name\t 4h "),
               title: Column(
                 children: [
                   Text("${temp.getUser().getAccountName()} \t${temp.getUser().getUserHandle()}\t 4h "),
 
-                  //todo add support for mulitple images and video
+                  //todo add support for multiple images and video
                   temp.getMediaType() == "photo" ?
                     Image.network(temp.getMediaUrl()[0], scale: 9,)
-                    // print("type asdf ${temp.getMediaUrl()[0]}"),
-                    // Image.network("https://blog.hubspot.com/hubfs/image8-2.jpg")
-
                       :
                       Container()
 

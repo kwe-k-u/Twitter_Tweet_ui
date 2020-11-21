@@ -1,6 +1,10 @@
 
 
 
+import 'dart:convert';
+
+import 'package:twitter_api/twitter_api.dart';
+
 ///Obtains a date format as a string and converts it into a dart DateTime object
 dynamic convertTwitterDate(String d){
   DateTime newDate;
@@ -49,4 +53,42 @@ String statText(dynamic data){
   }
 
   return text.toString();
+}
+
+
+
+
+
+///Returns a json object for the twitter user that matches the [id]
+Future<Map<String,dynamic>> findUser(String id) async{
+  var au = new twitterApi(
+    consumerKey: "NxaAqeLwbd3bI0of36MF5sjs3",
+    consumerSecret: "1Pp0BWpGeHXwLNCLGSC4SkNPkyZKCV2rWjv55LjD2PZ81WqAxN",
+    token: "721809764-mzwYMd8R89NajMboUuZ6YZkBuCkDlFcP8YzDg3Qv",
+    tokenSecret: "M9QxNtnp6wuaLN27oSQtQ0coR6vv8e8ETRKuTygMGPXt6",
+  );
+
+  Future twitterRequest = au.getTwitterRequest(
+    // Http Method
+    "GET",
+    // Endpoint you are trying to reach
+    "/users/lookup.json",
+    // The options for the request
+    options: {
+      "user_id": id,
+    },
+  );
+
+  // Wait for the future to finish
+  var res = await twitterRequest;
+
+  // Print off the response
+
+  // Convert the string response into something more useable
+  dynamic t = json.decode(res.body);
+
+  // for (Map<dynamic, dynamic> map in t){
+  //   // print("asdf t is $map");
+  // }
+  return Map<String,dynamic>.of(t[0]);
 }

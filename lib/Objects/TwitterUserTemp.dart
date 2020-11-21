@@ -21,16 +21,44 @@ class TwitterUserTemp{
 
 
   ///Creates a [TwitterUserTemp] from a json object [map]
-  TwitterUserTemp createFromMap(Map<String,dynamic> map){
-    print("asdf man map $map");
+  TwitterUserTemp createFromMap(Map<String,dynamic> map) {
+    if (map.keys.length <3) {
+      findUser(map["id"].toString()).then((value) {
+        map = value;
 
-    setUserHandle(map["screen_name"]);
-    setUserId(map["id"].toString());
-    setUserName(map["name"]);
-    setDescription(map["description"]);
-    setCreatedDate(map["created_at"]);
+        setUserHandle(map["screen_name"]);
+        setUserId(map["id"].toString());
+        setUserName(map["name"]);
+        setDescription(map["description"]);
+        setCreatedDate(map["created_at"]);
+        setUserName(map["name"]);
+        setFollowersCount(map["followers_count"]);
+        setFollowingCount(map["friends_count"]);
+        setVerifiedStatus(map["verified"]);
+        setTweetCount(map["statuses_count"]);
+        setProfileImageUrl(map["profile_image_url"]);
+        // setCreatedDate(convertTwitterDate(map["created_at"]));
+      });
 
-    return this;
+      return this;
+
+    } else {
+      setUserHandle(map["screen_name"]);
+      setUserId(map["id"].toString());
+      setUserName(map["name"]);
+      setDescription(map["description"]);
+      setCreatedDate(map["created_at"]);
+      setUserName(map["name"]);
+      setFollowersCount(map["followers_count"]);
+      setFollowingCount(map["friends_count"]);
+      setVerifiedStatus(map["verified"]);
+      setTweetCount(map["statuses_count"]);
+      setProfileImageUrl(map["profile_image_url"]);
+      // setCreatedDate(convertTwitterDate(map["created_at"]));
+
+      return this;
+    }
+
   }
 
 
