@@ -35,10 +35,9 @@ class TweetWidget extends StatelessWidget {
                 child:
                 Image.network(temp.getUser().getProfileImageUrl(), ),
               ),
-              // title: Text("account name \t@account name\t 4h "),
               title: Column(
                 children: [
-                  Text("${temp.getUser().getAccountName()} \t${temp.getUser().getUserHandle()}\t 4h "),
+                  Text("${temp.getUser().getAccountName()} \t${temp.getUser().getUserHandle()}\t ${timeCreated(temp.getDateCreated())} "),
 
                   //todo add support for multiple images and video
                   temp.getMediaType() == "photo" ?
@@ -46,7 +45,6 @@ class TweetWidget extends StatelessWidget {
                       :
                       Container()
 
-                  // temp.getMediaType().toLowerCase() == "photo" ? Image.network(temp.getMediaUrl()[0]) : Container(),
                 ],
               ),
               trailing: Icon(Zocial.twitter, size: 20.0,),

@@ -39,6 +39,8 @@ class TwitterPostTemp{
     //Runs if the tweet has been retweeted. helps replace authenticated user metrics with original tweet metrics
     if (map["retweeted"]) {
       setDatePosted(map["retweeted_status"]["created_at"]);
+      // print("asdf created 1 ${map["retweeted_status"]["created_at"]}");
+
       setTweetId(map["retweeted_status"]["id"]);
       setRetweetedStatus(map["retweeted_status"]["retweeted"]);
 
@@ -62,6 +64,7 @@ class TwitterPostTemp{
     } else {
       //Runs if tweet is current user's own tweet
       setDatePosted(map["created_at"]);
+
       setTweetId(map["id"]);
       setRetweetedStatus(map["retweeted"]);
 
@@ -100,8 +103,10 @@ class TwitterPostTemp{
 
 ///Sets the date of posting of [TwitterPostTemp] to [date]
   void setDatePosted(dynamic date){
-    if (date.runtimeType == String)
+    if (date.runtimeType == String){
         this._createdAt = convertTwitterDate(date);
+    // print("asdf ${this._createdAt}");
+    }
     else if (date.runtimeType == DateTime)
       this._createdAt = date;
   }

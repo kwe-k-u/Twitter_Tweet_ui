@@ -96,7 +96,8 @@ class TwitterUserTemp{
   ///Sets the date of creation of the twitter account to [date]
   void setCreatedDate(dynamic date){
     if (date.runtimeType == String){
-      this._createAt = convertTwitterDate(date);
+      this._createAt = DateTime.now();
+      // this._createAt = convertTwitterDate(date);
     } else if (date.runtimeType == DateTime){
       this._createAt = date;
     }
